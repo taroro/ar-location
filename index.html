@@ -24,10 +24,12 @@ log : function () {
   var rotation = cameraEl.getAttribute('rotation');
   var worldPos = new THREE.Vector3();
   worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
-  textEl.setAttribute("value", "Time: ")
-  console.log("Time: " + this.data.seconds 
+  textEl.setAttribute("value", "Time: " + this.data.seconds 
               + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
-              + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")");        
+              + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")")
+  /* console.log("Time: " + this.data.seconds 
+              + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
+              + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")");    */     
 },
 
 play: function () {
@@ -53,7 +55,7 @@ tick: function () {
       <a-text
         value="This content will always face you."
         look-at="[gps-camera]"
-        scale="20 20 20"
+        scale="10 10 10"
         rotation="0 90 0" 
         gps-entity-place="latitude: 15.156301; longitude: 104.889123;"
         id="textEl"
