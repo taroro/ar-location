@@ -24,7 +24,7 @@ log : function () {
   var rotation = cameraEl.getAttribute('rotation');
   var worldPos = new THREE.Vector3();
   worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
-  textEl.setElement("value", "Time: ")
+  textEl.setAttribute("value", "Time: ")
   console.log("Time: " + this.data.seconds 
               + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
               + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")");        
