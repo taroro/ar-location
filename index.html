@@ -22,7 +22,13 @@
         gps-entity-place="latitude: 15.156301; longitude: 104.889123;"
       ></a-text>
       <a-entity gltf-model="./asset/box/box.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="latitude: 15.156301; longitude: 104.889123;" animation-mixer/> 
-      <a-camera gps-camera rotation-reader> </a-camera>
+      <a-camera id="camera" gps-camera rotation-reader> </a-camera>
     </a-scene>
   </body>
+  <script>
+    var cameraEl = document.querySelector('#camera');
+    var worldPos = new THREE.Vector3();
+    worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
+    console.log(worldPos.x);
+  </script>
 </html>
