@@ -23,7 +23,7 @@
         var rotation = cameraEl.getAttribute('rotation');
         var worldPos = new THREE.Vector3();
         worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
-        const distanceMsg = document.querySelector('[mill]').getAttribute('distanceMsg');
+        const distanceMsg = document.querySelector('[mill]').getAttribute('distance');
         console.log(distanceMsg);
         textEl.setAttribute("value", distanceMsg)
         /* console.log("Time: " + this.data.seconds 
@@ -63,9 +63,9 @@
         gltf-model="./asset/mill/LowPolyMill.gltf" 
         rotation="0 0 0" 
         scale="1 1 1" 
-        gps-entity-place="latitude: 15.156302; longitude: 104.889123; distanceMsg" 
+        gps-entity-place="latitude: 15.156302; longitude: 104.889123;" 
         animation-mixer
-        distanceMsg
+        distance
         mill /> 
       <a-entity id="camera" camera camera-logger></a-entity>
       <a-camera 
