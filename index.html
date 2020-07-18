@@ -10,59 +10,64 @@
   </head>
 
   <script>
-    AFRAME.registerComponent('camera-logger', {
+    /* AFRAME.registerComponent('camera-logger', {
+      schema: {
+        timestamp: {type: 'int'},
+        seconds: {type: 'int'} // default 0
+      },
 
-schema: {
-  timestamp: {type: 'int'},
-  seconds: {type: 'int'} // default 0
-},
+      log : function () {
+        var logEl = document.querySelector('#camera');
+        var textEl = document.querySelector('#textEl');
+        var cameraEl = this.el.sceneEl.camera.el;
+        var rotation = cameraEl.getAttribute('rotation');
+        var worldPos = new THREE.Vector3();
+        worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
+        textEl.setAttribute("value", "Time: " + this.data.seconds 
+                    + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
+                    + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")")
+        console.log("Time: " + this.data.seconds 
+                    + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
+                    + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")");  
+      },
 
-log : function () {
-  var logEl = document.querySelector('#camera');
-  var textEl = document.querySelector('#textEl');
-  var cameraEl = this.el.sceneEl.camera.el;
-  var rotation = cameraEl.getAttribute('rotation');
-  var worldPos = new THREE.Vector3();
-  worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
-  textEl.setAttribute("value", "Time: " + this.data.seconds 
-              + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
-              + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")")
-  /* console.log("Time: " + this.data.seconds 
-              + "; Camera Position: (" + worldPos.x.toFixed(2) + ", " + worldPos.y.toFixed(2) + ", " + worldPos.z.toFixed(2) 
-              + "); Camera Rotation: (" + rotation.x.toFixed(2) + ", " + rotation.y.toFixed(2) + ", " + rotation.z.toFixed(2) + ")");    */     
-},
+      play: function () {
+        this.data.timestamp = Date.now();
+        this.log();
+      },
 
-play: function () {
-  this.data.timestamp = Date.now();
-  this.log();
-},
-
-tick: function () {  
-  if (Date.now() - this.data.timestamp > 1000) {
-    this.data.timestamp += 1000;
-    this.data.seconds += 1;
-    this.log();
-  }
-},
-});
+      tick: function () {  
+        if (Date.now() - this.data.timestamp > 1000) {
+          this.data.timestamp += 1000;
+          this.data.seconds += 1;
+          this.log();
+        }
+      },
+    }); */
   </script>
-  <body style="margin: 0; overflow: hidden;">
+  <body style="margin: 0px; overflow: hidden;">
     <a-scene
       vr-mode-ui="enabled: false"
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
-      <a-text
+      <!-- <a-text
         value="This content will always face you."
         look-at="[gps-camera]"
         scale="10 10 10"
         rotation="0 270 0" 
         gps-entity-place="latitude: 15.156301; longitude: 104.889123;"
         id="textEl"
-      ></a-text>
-      <a-entity gltf-model="./asset/mill/LowPolyMill.gltf" rotation="0 0 0" scale="1 1 1" gps-entity-place="latitude: 15.156301; longitude: 104.889123;" animation-mixer/> 
-      <a-entity id="camera" camera camera-logger></a-entity>
-      <a-camera gps-camera rotation-reader> </a-camera>
+      ></a-text> -->
+      <a-entity 
+        gltf-model="./asset/mill/LowPolyMill.gltf" 
+        rotation="0 0 0" 
+        scale="1 1 1" 
+        look-at="[gps-camera]"
+        gps-entity-place="latitude: 15.156301; longitude: 104.889123;" 
+        animation-mixer/> 
+      <!-- <a-entity id="camera" camera camera-logger></a-entity> -->
+      <a-camera gps-projected-camera rotation-reader> </a-camera>
     </a-scene>
   </body>
 </html>
